@@ -1,15 +1,12 @@
-Package gestion_fractions is
-	DIV_PAR_ZERO, FAUX_CALCUL : exception;
+Package polynomes is
 
-	type T_Fraction is record
-		Num : Integer;
-		Den : Positive;
+	subtype T_Degre is Natural range 0..10000;
+	type T_Coeff is array(T_Degre range <>) of T_Fraction; 
+
+	type T_Polynome(Degre : T_Degre := 0) is record
+		Coeff : T_Coeff(0..Degre); 
 	end record;
 
-	type tab_fraction is array (integer range<>) of T_Fraction;
-
-	function Est_Numerique_Int(S : in String) return Boolean;
-	procedure verif_frac(num, den : in out integer);
 	procedure get(frac : out T_Fraction);
 	procedure Put(frac : T_Fraction);
 	function PGCD(n1, n2 : integer) return natural;
@@ -20,10 +17,7 @@ Package gestion_fractions is
 	function "*"(frac_1, frac_2 : T_Fraction) return T_fraction;
 	function "*"(nb_entier : integer; frac : T_Fraction) return T_fraction;
 	function "*"(frac : T_Fraction; nb_entier : integer) return T_fraction;
-	--function puissance(frac : T_Fraction; nb_entier : integer) return T_fraction;
-	function "**"(frac, exposant : T_Fraction) return T_fraction;
 	function "/"(frac_1, frac_2 : T_Fraction) return T_fraction;
 	function "/"(nb_entier : integer; frac : T_Fraction) return T_fraction;
 	function "/"(frac : T_Fraction; nb_entier : integer) return T_fraction;
-	procedure command_line;
 end gestion_fractions;
